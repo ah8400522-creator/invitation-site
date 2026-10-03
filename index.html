@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOVA X Showcase Portfolio | كود إلى إبداع</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* متغيرات الألوان للوضع الداكن (Dark Mode) */
+    [data-theme="dark"] {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: rgba(148, 163, 184, 0.15);
+      --accent-blue: #3b82f6;
+      --accent-cyan: #38bdf8;
+      --accent-gradient: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
+      --accent-glow: rgba(56, 189, 248, 0.15);
+      --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.25);
+      --radius: 16px;
+    }
+
+    /* متغيرات الألوان للوضع الفاتح العصري (Light Mode) */
+    [data-theme="light"] {
+      --bg-dark: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: rgba(148, 163, 184, 0.25);
+      --accent-blue: #2563eb;
+      --accent-cyan: #0284c7;
+      --accent-gradient: linear-gradient(135deg, #1d4ed8 0%, #0284c7 100%);
+      --accent-glow: rgba(2, 132, 199, 0.12);
+      --shadow-sm: 0 10px 25px rgba(15, 23, 42, 0.06);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+      scroll-behavior: smooth;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* --- Scroll Progress Bar --- */
+    #scrollProgress {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent-gradient);
+      width: 0%;
+      z-index: 2000;
+    }
+
+    /* --- Navbar Styles --- */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-cyan);
+      object-fit: cover;
+    }
+
+    .logo-text-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text {
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .logo-sub {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      margin-top: -4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-cyan);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-toggle-btn {
+      background: var(--bg-card-hover);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .theme-toggle-btn:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    .btn-nav {
+      background: var(--accent-gradient);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-nav:hover {
+      transform: translateY(-2px);
+    }
+
+    /* --- Floating WhatsApp Button --- */
+    .float-wa-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 56px;
+      height: 56px;
+      background-color: #10b981;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+      z-index: 1500;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      padding: 150px 6% 70px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      background: var(--accent-glow);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      color: var(--accent-cyan);
+      font-size: 0.88rem;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-cyan);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 900;
+      line-height: 1.25;
+      max-width: 850px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.12rem;
+      max-width: 720px;
+      margin-bottom: 35px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* --- General Section Setup --- */
+    section {
+      padding: 80px 6%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      font-weight: 900;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      margin-top: 8px;
+      font-size: 1rem;
+    }
+
+    /* --- Before vs After Comparison --- */
+    .ba-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    .ba-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 30px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ba-card.before {
+      border-right: 4px solid #ef4444;
+    }
+
+    .ba-card.after {
+      border-right: 4px solid #10b981;
+    }
+
+    .ba-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .before .ba-tag { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+    .after .ba-tag { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+
+    .ba-list {
+      list-style: none;
+      margin-top: 15px;
+    }
+
+    .ba-list li {
+      padding: 8px 0;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* --- Advanced Realistic Live Demo Simulator --- */
+    .demo-simulator-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .phone-frame {
+      width: 340px;
+      height: 640px;
+      background: #090d16;
+      border: 12px solid #1e293b;
+      border-radius: 46px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 130px;
+      height: 22px;
+      background: #1e293b;
+      border-bottom-left-radius: 14px;
+      border-bottom-right-radius: 14px;
+      z-index: 100;
+    }
+
+    .phone-status-bar {
+      padding: 6px 18px 2px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.68rem;
+      color: #94a3b8;
+      z-index: 90;
+      margin-top: 2px;
+    }
+
+    .phone-screen {
+      flex: 1;
+      background: var(--bg-dark);
+      padding: 12px 12px 70px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .demo-header {
+      text-align: center;
+      padding: 10px 0 5px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .demo-brand-name {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--accent-cyan);
+    }
+
+    .demo-sub-text {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .demo-categories {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .demo-cat-btn {
+      background: var(--bg-card-hover);
+      color: var(--text-main);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .demo-cat-btn.active {
+      background: var(--accent-gradient);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .demo-item-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .demo-item-img {
+      width: 55px;
+      height: 55px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: #334155;
+    }
+
+    .demo-item-info {
+      flex: 1;
+    }
+
+    .demo-item-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .demo-item-price {
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      font-weight: 800;
+    }
+
+    .demo-add-btn {
+      background: var(--accent-gradient);
+      border: none;
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .demo-add-btn:active {
+      transform: scale(0.95);
+    }
+
+    .demo-cart-bar {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      background: #10b981;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+      z-index: 95;
+      display: none;
+    }
+
+    /* --- Feature Matrix Table --- */
+    .matrix-table-wrap {
+      overflow-x: auto;
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .matrix-table th, .matrix-table td {
+      padding: 16px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    .matrix-table th {
+      background: var(--bg-card-hover);
+      font-weight: 800;
+    }
+
+    .matrix-table td:first-child, .matrix-table th:first-child {
+      text-align: right;
+      font-weight: 800;
+    }
+
+    .check-yes { color: #10b981; font-weight: 900; }
+    .check-no { color: #ef4444; font-weight: 900; }
+
+    /* --- Technologies & Integrations --- */
+    .tech-grid {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .tech-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 15px 25px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .tech-item i { color: var(--accent-cyan); font-size: 1.2rem; }
+
+    /* --- Growth Tips / Mini Blog --- */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    .blog-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 25px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .blog-card h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .blog-card p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    /* --- QR Code Generator Section --- */
+    .qr-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 30px;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .qr-img-box {
+      width: 160px;
+      height: 160px;
+      background: #fff;
+      padding: 10px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* --- Consultation Calendar --- */
+    .calendar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 30px;
+      max-width: 650px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-color);
+      padding: 45px 6% 22px;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 25px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg-card-hover);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scrollProgress"></div>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/971554848361?text=مرحباً%20NOVA%20X،%20أستفسر%20عن%20خدمات%20تطوير%20المواقع." class="float-wa-btn" target="_blank" title="تواصل معنا عبر الواتساب">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo-container">
+      <img src="imgs/WhatsApp Image 2026-09-22 at 3.12.23 PM.jpeg" alt="NOVA X Logo" class="logo-img">
+      <div class="logo-text-box">
+        <div class="logo-text">NOVA X</div>
+        <div class="logo-sub">نوفا اكس للتطوير</div>
+      </div>
+    </div>
+    
+    <ul class="nav-links">
+      <li><a href="#about">الرئيسية</a></li>
+      <li><a href="#demo">المعاينة الحية</a></li>
+      <li><a href="#matrix">مقارنة الباقات</a></li>
+      <li><a href="#pricing">الأسعار</a></li>
+      <li><a href="#contact">تواصل معنا</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <!-- Theme Switcher Button -->
+      <button class="theme-toggle-btn" onclick="toggleTheme()" title="تبديل الوضع">
+        <i class="fas fa-sun" id="themeIcon"></i>
+      </button>
+
+      <a href="https://wa.me/971554848361" class="btn-nav" target="_blank">
+        <i class="fab fa-whatsapp"></i> احصل على موقعك
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="about">
+    <div class="badge">
+      <span class="badge-dot"></span> نبتكر أفكارك ونحولها إلى تجربة رقمية استثنائية
+    </div>
+    <h1>حوّل أفكارك إلى واقع رقمي مذهل مع <span>NOVA X</span></h1>
+    <p>نقدم خدمات تطوير وتصميم المواقع الإلكترونية الحديثة، القوائم الرقمية التفاعلية للمطاعم والكافيهات، والمتاجر الاحترافية بتصاميم سريعة ومجهّزة للظهور في محركات البحث SEO.</p>
+    
+    <div class="hero-btns">
+      <a href="#demo" class="btn-nav">
+        <i class="fas fa-mobile-alt"></i> جرب المنيو الحي
+      </a>
+      <a href="#pricing" class="btn-nav" style="background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-color);">
+        <i class="fas fa-tags"></i> باقات الأسعار
+      </a>
+    </div>
+  </section>
+
+  <!-- Section: Before vs After Comparison -->
+  <section>
+    <div class="section-title">
+      <h2>قبل وبعد: التحول الرقمي مع NOVA X</h2>
+      <p>شاهد كيف يغير المنيو الرقمي السريع تجربة زبائنك ويرفع مبيعاتك</p>
+    </div>
+
+    <div class="ba-grid">
+      <div class="ba-card before">
+        <span class="ba-tag">المنيو الورقي القديم ✗</span>
+        <h3>التجربة التقليدية البطيئة</h3>
+        <ul class="ba-list">
+          <li><i class="fas fa-times" style="color:#ef4444"></i> تكلفة طباعة وتعديل ورقي مستمرة</li>
+          <li><i class="fas fa-times" style="color:#ef4444"></i> صعوبة في تعديل الأسعار أو الأصناف</li>
+          <li><i class="fas fa-times" style="color:#ef4444"></i> بطء في توجيه الطلبات للواتساب أو التوصيل</li>
+          <li><i class="fas fa-times" style="color:#ef4444"></i> مظهر قديم لا يعكس احترافية المكان</li>
+        </ul>
+      </div>
+
+      <div class="ba-card after">
+        <span class="ba-tag">المنيو الرقمي من NOVA X ✓</span>
+        <h3>التجربة التفاعلية الحديثة</h3>
+        <ul class="ba-list">
+          <li><i class="fas fa-check" style="color:#10b981"></i> تعديل الأسعار والأصناف بنقرة واحدة</li>
+          <li><i class="fas fa-check" style="color:#10b981"></i> فتح المنيو فوراً بمسح رمز QR على الطاولة</li>
+          <li><i class="fas fa-check" style="color:#10b981"></i> طلب مباشر وسريع عبر الواتساب وتطبيقات الطلب</li>
+          <li><i class="fas fa-check" style="color:#10b981"></i> تصميم عصري وسريع جداً على الموبايل PWA</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Realistic Live Demo Simulator Section -->
+  <section id="demo">
+    <div class="section-title">
+      <h2>محاكي المنيو الرقمي التفاعلي الحقيقي</h2>
+      <p>جرب الفلترة الحية وتجربة إضافة الوجبات للسلة بنفسك من داخل الهاتف المباشر</p>
+    </div>
+
+    <div class="demo-simulator-container">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        
+        <!-- Phone Status Bar -->
+        <div class="phone-status-bar">
+          <span>9:41</span>
+          <div><i class="fas fa-wifi"></i> <i class="fas fa-battery-full"></i></div>
+        </div>
+
+        <div class="phone-screen">
+          <div class="demo-header">
+            <div class="demo-brand-name">BOLD 30 CAFE</div>
+            <div class="demo-sub-text">المنيو الرقمي السريع (تفاعلي حي)</div>
+          </div>
+
+          <!-- Interactive Categories Filter -->
+          <div class="demo-categories">
+            <button class="demo-cat-btn active" onclick="filterDemoItems('all', this)">الكل</button>
+            <button class="demo-cat-btn" onclick="filterDemoItems('coffee', this)">قهوة</button>
+            <button class="demo-cat-btn" onclick="filterDemoItems('sweets', this)">حلى</button>
+            <button class="demo-cat-btn" onclick="filterDemoItems('food', this)">وجبات</button>
+          </div>
+
+          <!-- Items Container -->
+          <div id="demoItemsContainer" style="display: flex; flex-direction: column; gap: 8px;">
+            <!-- Coffee Items -->
+            <div class="demo-item-card coffee">
+              <img src="imgs/Screenshot 2026-10-03 191848.png" alt="Coffee" class="demo-item-img" onerror="this.src='https://via.placeholder.com/60'">
+              <div class="demo-item-info">
+                <div class="demo-item-title">سبانيش لاتيه بارد</div>
+                <div class="demo-item-price">22 د.إ</div>
+              </div>
+              <button class="demo-add-btn" onclick="addToDemoCart('سبانيش لاتيه بارد', 22)">إضافة +</button>
+            </div>
+
+            <div class="demo-item-card coffee">
+              <img src="imgs/Screenshot 2026-10-03 191851.png" alt="Coffee" class="demo-item-img" onerror="this.src='https://via.placeholder.com/60'">
+              <div class="demo-item-info">
+                <div class="demo-item-title">آيس أوفيرود لاتيه</div>
+                <div class="demo-item-price">25 د.إ</div>
+              </div>
+              <button class="demo-add-btn" onclick="addToDemoCart('آيس أوفيرود لاتيه', 25)">إضافة +</button>
+            </div>
+
+            <!-- Sweets Items -->
+            <div class="demo-item-card sweets">
+              <img src="imgs/Screenshot 2026-10-03 191855.png" alt="Sweets" class="demo-item-img" onerror="this.src='https://via.placeholder.com/60'">
+              <div class="demo-item-info">
+                <div class="demo-item-title">كيك الشوكولاتة الفاخرة</div>
+                <div class="demo-item-price">28 د.إ</div>
+              </div>
+              <button class="demo-add-btn" onclick="addToDemoCart('كيك الشوكولاتة الفاخرة', 28)">إضافة +</button>
+            </div>
+
+            <!-- Food Items -->
+            <div class="demo-item-card food">
+              <img src="imgs/Screenshot 2026-10-03 191904.png" alt="Food" class="demo-item-img" onerror="this.src='https://via.placeholder.com/60'">
+              <div class="demo-item-info">
+                <div class="demo-item-title">ساندوتش كلوب BOLD</div>
+                <div class="demo-item-price">34 د.إ</div>
+              </div>
+              <button class="demo-add-btn" onclick="addToDemoCart('ساندوتش كلوب BOLD', 34)">إضافة +</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Cart Bar inside Phone -->
+        <div class="demo-cart-bar" id="demoCartBar">
+          <div>
+            <span id="demoCartCount">1 عنصر</span> | <span id="demoCartTotal">22 د.إ</span>
+          </div>
+          <span style="background: rgba(255,255,255,0.25); padding: 3px 8px; border-radius: 6px; cursor: pointer;" onclick="sendDemoCart()">طلب عبر الواتساب <i class="fab fa-whatsapp"></i></span>
+        </div>
+      </div>
+
+      <p style="font-size: 0.88rem; color: var(--text-muted);">اضغط على الأقسام والأزرار لتجربة الاستجابة الفورية للمنيو الرقمي</p>
+    </div>
+  </section>
+
+  <!-- Detailed Feature Matrix Section -->
+  <section id="matrix">
+    <div class="section-title">
+      <h2>جدول مقارنة الباقات التفصيلي</h2>
+      <p>توضيح شامِل للفروقات والميزات المتاحة في كل باقة من باقات NOVA X</p>
+    </div>
+
+    <div class="matrix-table-wrap">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>الميزة / الخاصية</th>
+            <th>المنيو الرقمي (200 د.إ)</th>
+            <th>موقع متكامل (250 د.إ)</th>
+            <th>الباقة الشاملة (400 د.إ)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>تجاوب كامل مع الموبايل (100%)</td>
+            <td class="check-yes">✓</td>
+            <td class="check-yes">✓</td>
+            <td class="check-yes">✓</td>
+          </tr>
+          <tr>
+            <td>ربط المبيعات والطلبات بالواتساب</td>
+            <td class="check-yes">✓</td>
+            <td class="check-yes">✓</td>
+            <td class="check-yes">✓</td>
+          </tr>
+          <tr>
+            <td>نظام لوحة تحكم وإدارة الأصناف</td>
+            <td class="check-no">✗</td>
+            <td class="check-yes">✓</td>
+            <td class="check-yes">✓</td>
+          </tr>
+          <tr>
+            <td>حاسبة مقايسات / سلة شراء متطورة</td>
+            <td class="check-no">✗</td>
+            <td class="check-yes">✓</td>
+            <td class="check-yes">✓</td>
+          </tr>
+          <tr>
+            <td>ربط Google Analytics & SEO</td>
+            <td class="check-yes">أساسي</td>
+            <td class="check-yes">متقدم</td>
+            <td class="check-yes">احترافي شامل</td>
+          </tr>
+          <tr>
+            <td>مدة الدعم الفني والصيانة المجانية</td>
+            <td>شهر واحد</td>
+            <td>3 أشهر</td>
+            <td>6 أشهر كاملة</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing">
+    <div class="section-title">
+      <h2>باقات الخدمات والأسعار</h2>
+      <p>خطط بأسعار واضحة تناسب مختلف المشروعات والاحتياجات</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 25px; max-width: 1050px; margin: 0 auto;">
+      <!-- Digital Menu -->
+      <div style="background: var(--bg-card); border-radius: var(--radius); padding: 35px 25px; border: 1px solid var(--border-color); text-align: center; display: flex; flex-direction: column;">
+        <h3>المنيو الرقمي الديجيتال</h3>
+        <div style="margin: 18px 0;">
+          <div style="font-size: 2.2rem; font-weight: 900; color: var(--accent-cyan);">200 د.إ</div>
+          <div style="font-size: 0.88rem; color: var(--text-muted); font-weight: 700; margin-top: 6px;">~ 2,700 ج.م</div>
+        </div>
+        <a href="https://wa.me/971554848361?text=أرغب%20في%20طلب%20منيو%20رقمي%20بـ%20200%20درهم" class="btn-nav" style="background: var(--bg-card-hover); color: var(--text-main); border: 1px solid var(--border-color); margin-top: auto;" target="_blank">طلب المنيو الرقمي</a>
+      </div>
+
+      <!-- Full Website -->
+      <div style="background: var(--bg-card); border-radius: var(--radius); padding: 35px 25px; border: 2px solid var(--accent-cyan); text-align: center; display: flex; flex-direction: column;">
+        <h3>موقع إلكتروني متكامل</h3>
+        <div style="margin: 18px 0;">
+          <div style="font-size: 2.2rem; font-weight: 900; color: var(--accent-cyan);">250 د.إ</div>
+          <div style="font-size: 0.88rem; color: var(--text-muted); font-weight: 700; margin-top: 6px;">~ 3,400 ج.م</div>
+        </div>
+        <a href="https://wa.me/971554848361?text=أرغب%20في%20طلب%20موقع%20متكامل%20بـ%20250%20درهم" class="btn-nav" style="margin-top: auto;" target="_blank">طلب الموقع المتكامل</a>
+      </div>
+
+      <!-- Custom All-In-One -->
+      <div style="background: var(--bg-card); border-radius: var(--radius); padding: 35px 25px; border: 1px solid var(--border-color); text-align: center; display: flex; flex-direction: column;">
+        <h3>الباقة الشاملة المخصصة</h3>
+        <div style="margin: 18px 0;">
+          <div style="font-size: 2.2rem; font-weight: 900; color: var(--accent-cyan);">400 د.إ</div>
+          <div style="font-size: 0.88rem; color: var(--text-muted); font-weight: 700; margin-top: 6px;">~ 5,400 ج.م</div>
+        </div>
+        <a href="https://wa.me/971554848361?text=أرغب%20في%20طلب%20الباقة%20الشاملة%20بـ%20400%20درهم" class="btn-nav" style="background: var(--bg-card-hover); color: var(--text-main); border: 1px solid var(--border-color); margin-top: auto;" target="_blank">طلب الباقة الشاملة</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technologies & Integrations Section -->
+  <section>
+    <div class="section-title">
+      <h2>التقنيات والتكاملات المدعومة</h2>
+      <p>نربط موقعك بأحدث الخدمات والتقنيات العالمية لضمان سهولة الإدارة والتوسع</p>
+    </div>
+
+    <div class="tech-grid">
+      <div class="tech-item"><i class="fab fa-whatsapp"></i> WhatsApp Direct API</div>
+      <div class="tech-item"><i class="fas fa-search"></i> Google SEO Ready</div>
+      <div class="tech-item"><i class="fas fa-chart-line"></i> Google Analytics</div>
+      <div class="tech-item"><i class="fas fa-utensils"></i> Talabat & Careem Links</div>
+      <div class="tech-item"><i class="fas fa-bolt"></i> Instant PWA Speed</div>
+    </div>
+  </section>
+
+  <!-- Growth Tips / Mini Blog Section -->
+  <section>
+    <div class="section-title">
+      <h2>نصائح النمو للمطاعم والمتاجر</h2>
+      <p>مقالات واستراتيجيات سريعة لرفع المبيعات وتحويل زوار موقعك إلى عملاء دائمين</p>
+    </div>
+
+    <div class="blog-grid">
+      <div class="blog-card">
+        <h3>كيف يزيد المنيو الرقمي من متوسط قيمة الفاتورة؟</h3>
+        <p>عرض الصور عالية الجودة وتنظيم الوجبات بشكل جذاب يشجع الزبون على طلب الأصناف الجانبية والمشروبات بسهولة أكبر مقارنة بالمنيو الورقي التقليدي.</p>
+      </div>
+
+      <div class="blog-card">
+        <h3>أهمية سرعة التحميل في تحويل الزوار إلى مبيعات</h3>
+        <p>تأخر تحميل الموقع لثانيتين إضافيتين قد يفقدك 30% من الزوار. لذلك نعتمد تقنيات الضغط والـ PWA لضمان فتح المنيو في أقل من ثانية.</p>
+      </div>
+
+      <div class="blog-card">
+        <h3>لماذا تحتاج كل شركة إلى ربط تحليلات Google Analytics؟</h3>
+        <p>معرفة عدد الزوار اليومي، والوجبات الأكثر مشاهدة، وأوقات الذروة يساعدك في توجيه حملاتك التسويقية وعروضك الخاصة بدقة متناهية.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Share & QR Code Generator Section -->
+  <section>
+    <div class="section-title">
+      <h2>مولّد رمز QR ورابط المشاركة السريع</h2>
+      <p>احصل على رمز QR مخصص لمنيو مطعمك أو متجرك لطباعته مباشرة على الكروت والطاولات</p>
+    </div>
+
+    <div class="qr-card">
+      <div class="qr-img-box">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://wa.me/971554848361" alt="Sample QR Code">
+      </div>
+      <strong style="font-size: 1rem;">رمز QR تجريبي لموقعك</strong>
+      <p style="font-size: 0.88rem; color: var(--text-muted);">نقوم بإنشاء وتجهيز رمز QR عالي الدقة خاص بموقعك جاهز للطباعة فوراً</p>
+      
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+        <button onclick="copyCurrentUrl()" class="btn-nav" style="background: var(--bg-card-hover); color: var(--text-main); border: 1px solid var(--border-color);">
+          <i class="fas fa-copy"></i> نسخ رابط الموقع
+        </button>
+        <button onclick="shareOnWhatsApp()" class="btn-nav">
+          <i class="fab fa-whatsapp"></i> مشاركة عبر الواتساب
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Book a 10-Min Consultation Call Section -->
+  <section>
+    <div class="section-title">
+      <h2>حجز جلسة استشارية مجانية (10 دقائق)</h2>
+      <p>هل لديك مشروع خاص أو استفسارات محددة؟ احجز موعد مكالمة سريعة مع مختصينا</p>
+    </div>
+
+    <div class="calendar-card">
+      <i class="fas fa-calendar-alt" style="font-size: 3rem; color: var(--accent-cyan); margin-bottom: 15px;"></i>
+      <h3 style="margin-bottom: 10px;">استشارة تقنية ومراجعة للفكرة مجاناً</h3>
+      <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 20px;">اختر الموعد المناسب لك وسنتواصل معك على الواتساب أو عبر المكالمة لمناقشة كافة التفاصيل.</p>
+      <a href="https://wa.me/971554848361?text=أرغب%20في%20حجز%20جلسة%20استشارية%20مجانية%20لمدة%2010%20دقائق" class="btn-nav" target="_blank">
+        <i class="fas fa-headset"></i> احجز موعد الاستشارة الآن
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="section-title">
+      <h2>ارسل تفاصيل مشروعك</h2>
+      <p>اكتب لنا فكرتك وسنتواصل معك فوراً على الواتساب لبدء التنفيذ</p>
+    </div>
+
+    <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 35px; max-width: 720px; margin: 0 auto;">
+      <div style="margin-bottom: 18px;">
+        <label style="display: block; font-weight: 800; margin-bottom: 6px;">الاسم / اسم النشاط التجاري:</label>
+        <input type="text" id="clientName" placeholder="مثال: مطعم BOLD 30 / أحمد" style="width: 100%; padding: 12px; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-main); outline: none;">
+      </div>
+
+      <div style="margin-bottom: 18px;">
+        <label style="display: block; font-weight: 800; margin-bottom: 6px;">نوع الموقع المطلوب:</label>
+        <select id="clientService" style="width: 100%; padding: 12px; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-main); outline: none;">
+          <option value="منيو رقمي دجيتال (200 د.إ)">منيو رقمي دجيتال للمطاعم/الكافيهات (200 د.إ)</option>
+          <option value="موقع إلكتروني متكامل (250 د.إ)">موقع إلكتروني متكامل (250 د.إ)</option>
+          <option value="باقة شاملة مخصصة (400 د.إ)">باقة شاملة مخصصة كاستوم (400 د.إ)</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom: 18px;">
+        <label style="display: block; font-weight: 800; margin-bottom: 6px;">تفاصيل وفكرة المشروع:</label>
+        <textarea id="clientDetails" placeholder="اكتب نبذة بسيطة عن الأقسام أو الخدمات التي تحتاجها..." style="width: 100%; padding: 12px; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-main); outline: none; min-height: 110px;"></textarea>
+      </div>
+
+      <button onclick="sendQuickOrder()" class="btn-nav" style="width: 100%; justify-content: center; padding: 14px;">
+        <i class="fab fa-whatsapp"></i> إرسال التفاصيل عبر الواتساب
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="logo-container">
+        <img src="imgs/WhatsApp Image 2026-09-22 at 3.12.23 PM.jpeg" alt="NOVA X" class="logo-img">
+        <div class="logo-text-box">
+          <div class="logo-text">NOVA X</div>
+          <div class="logo-sub">From Code to Creation</div>
+        </div>
+      </div>
+      <p style="color: var(--text-muted); max-width: 500px;">برمجة وتصميم كافة المتاجر والمواقع التفاعلية بأعلى جودة وأفضل الأسعار.</p>
+      <div class="social-links">
+        <a href="https://wa.me/971554848361" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/novax4660?stkn=MTVuOXhndjZ4Mmp4dQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@nova.x669?_r=1&_t=ZS-9AFG1R0qesX" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.facebook.com/novax4660" target="_blank"><i class="fab fa-facebook"></i></a>
+      </div>
+    </div>
+    <p style="color: var(--text-muted); font-size: 0.85rem;">جميع الحقوق محفوظة © 2026 NOVA X - Code to Creation</p>
+  </footer>
+
+  <script>
+    // Theme Switcher
+    function toggleTheme() {
+      const html = document.documentElement;
+      const themeIcon = document.getElementById('themeIcon');
+      const currentTheme = html.getAttribute('data-theme');
+      
+      if (currentTheme === 'dark') {
+        html.setAttribute('data-theme', 'light');
+        themeIcon.className = 'fas fa-moon';
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'fas fa-sun';
+      }
+    }
+
+    // Scroll Progress Bar
+    window.onscroll = function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById("scrollProgress").style.width = scrolled + "%";
+    };
+
+    // Realistic Demo Simulator Logic
+    let demoCartCount = 0;
+    let demoCartTotal = 0;
+
+    function filterDemoItems(category, btnElement) {
+      document.querySelectorAll('.demo-cat-btn').forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      const items = document.querySelectorAll('.demo-item-card');
+      items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function addToDemoCart(title, price) {
+      demoCartCount++;
+      demoCartTotal += price;
+
+      const cartBar = document.getElementById('demoCartBar');
+      cartBar.style.display = 'flex';
+
+      document.getElementById('demoCartCount').innerText = `${demoCartCount} عناصر`;
+      document.getElementById('demoCartTotal').innerText = `${demoCartTotal} د.إ`;
+    }
+
+    function sendDemoCart() {
+      const msg = encodeURIComponent(`مرحباً NOVA X، استعرضت محاكي المنيو التجريبي وأود استفسار عن موقع مشابه يحتوي على سلة بقيمة (${demoCartTotal} د.إ).`);
+      window.open(`https://wa.me/971554848361?text=${msg}`, '_blank');
+    }
+
+    // Share & Copy URL Functions
+    function copyCurrentUrl() {
+      navigator.clipboard.writeText(window.location.href);
+      alert('تم نسخ رابط الموقع بنجاح!');
+    }
+
+    function shareOnWhatsApp() {
+      const msg = encodeURIComponent(`استكشف خدمات تطوير المتاجر والمنيو الرقمي مع NOVA X: ${window.location.href}`);
+      window.open(`https://wa.me/?text=${msg}`, '_blank');
+    }
+
+    // Send Form via WhatsApp
+    function sendQuickOrder() {
+      const name = document.getElementById('clientName').value.trim() || 'عميل';
+      const service = document.getElementById('clientService').value;
+      const details = document.getElementById('clientDetails').value.trim() || 'لا توجد تفاصيل إضافية';
+
+      const msg = `مرحباً NOVA X، أرغب في طلب خدمة جديد:%0A- الاسم: ${encodeURIComponent(name)}%0A- الخدمة: ${encodeURIComponent(service)}%0A- التفاصيل: ${encodeURIComponent(details)}`;
+      window.open(`https://wa.me/971554848361?text=${msg}`, '_blank');
+    }
+  </script>
+</body>
+</html>
